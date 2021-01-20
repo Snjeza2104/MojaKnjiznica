@@ -1,0 +1,60 @@
+﻿@model IEnumerable<mojaKnjiznica.Models.Izdavaci>
+
+@{
+    ViewBag.Title = "Popis izdavača";
+}
+
+<h2>Popis izdavača</h2>
+
+<p>
+    @Html.ActionLink("Kreiraj novog izdavača", "Create")
+</p>
+@using(Html.BeginForm("Index", "Izdavacis", FormMethod.Get)){
+<p>
+    Pretraži po pojmu: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    <input type="submit" value="Pretraži" />
+    </p>}
+<table class="table">
+    <tr>
+        <th>
+          
+            @Html.ActionLink("Naziv", "Index", new { sortOrder=ViewBag.snaziv, currentFilter=ViewBag.CurrentFilter})
+        </th>
+        <th>
+          
+            @Html.ActionLink("Adresa", "Index", new { sortOrder = ViewBag.sadresa, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+          
+            @Html.ActionLink("Mobitel", "Index", new { sortOrder = ViewBag.smobitel, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+           
+            @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.semail, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mobitel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Uredi", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Obriši", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<mojaKnjiznica.Models.Pisci>
+
+@{
+    ViewBag.Title = "Pisci i knjige";
+}
+
+<h2>Pisci i knjige</h2>
+
+<p>
+    @Html.ActionLink("Kreiraj novi zapis", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Autori.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Knjiga.Naslov)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Autori.Ime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Knjiga.Naslov)
+        </td>
+        <td>
+            @Html.ActionLink("Uredi", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Obriši", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

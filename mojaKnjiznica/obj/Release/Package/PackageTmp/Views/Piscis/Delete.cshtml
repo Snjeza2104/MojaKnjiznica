@@ -1,0 +1,40 @@
+﻿@model mojaKnjiznica.Models.Pisci
+
+@{
+    ViewBag.Title = "Obriši";
+}
+
+<h2>Obriši</h2>
+
+<h3>Želite li sigurno obrisati ovo?</h3>
+<div>
+    <h4>Pisci knjiga</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Autori.Ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autori.Ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Knjiga.Naslov)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Knjiga.Naslov)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obriši" class="btn btn-default" /> |
+            @Html.ActionLink("Natrag na popis", "Index")
+        </div>
+    }
+</div>

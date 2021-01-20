@@ -1,0 +1,56 @@
+﻿@model IEnumerable<mojaKnjiznica.Models.Posidjivac>
+
+@{
+    ViewBag.Title = "Popis posuđivača";
+}
+
+<h2>Popis posuđivača</h2>
+
+<p>
+    @Html.ActionLink("Kreiraj novog posuđivača", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Posidjivacs", FormMethod.Get))
+{
+    <p>
+        Pretraži po pojmu: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Pretraži" />
+    </p>}
+<table class="table">
+    <tr>
+        <th>
+
+            @Html.ActionLink("Ime i prezime", "Index", new { sortOrder = ViewBag.sime, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+
+            @Html.ActionLink("Mobitel", "Index", new { sortOrder = ViewBag.smobitel, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+
+            @Html.ActionLink("Email", "Index", new { sortOrder = ViewBag.semail, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobitel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Uredi", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalji", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Obriši", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
